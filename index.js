@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const userRouter = require('./routes/user.route');
 const app = express();
 require('dotenv').config();
 require('./libs/dbConnect');
@@ -15,6 +16,8 @@ app.use(morgan('dev'));
 app.get('/', (req, res) => {
    res.render('index', { message: 'Hello From Node.js' });
 });
+
+app.use('/users', userRouter);
 app.get('/contact', (req, res) => {
   res.render('index', { message: 'The Contact Page' });
 });
